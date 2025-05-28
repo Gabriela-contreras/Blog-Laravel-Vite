@@ -1,61 +1,213 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏗️ SpaceDesign Blog
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<div align="center">
 
-## About Laravel
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+*Un blog moderno dedicado al mundo del diseño de espacios y arquitectura contemporánea*
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+[Demo](#) • [Documentación](#instalación) • [Contribuir](#contribuir)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+</div>
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🌟 Sobre el Proyecto
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+**SpaceDesign Blog** es una plataforma digital especializada en **diseño de espacios y arquitectura moderna**. Nuestro objetivo es inspirar y educar a través de contenido de alta calidad sobre:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- 🏠 **Arquitectura Residencial**: Casas modernas, minimalistas y sostenibles
+- 🏢 **Espacios Comerciales**: Oficinas, restaurantes y tiendas innovadoras  
+- 🌿 **Diseño Biofílico**: Integración de naturaleza en arquitectura
+- 🎨 **Interiores Contemporáneos**: Tendencias en decoración y mobiliario
+- 🌍 **Arquitectura Sostenible**: Construcciones eco-friendly y eficientes
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🛠️ Tecnologías Utilizadas
 
-### Premium Partners
+### Backend
+- **[Laravel 10](https://laravel.com/)** - Framework PHP moderno y elegante
+- **[PHP 8.2+](https://php.net/)** - Lenguaje de programación server-side
+- **MySQL Cloud** - Base de datos relacional en la nube
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Frontend  
+- **[TailwindCSS](https://tailwindcss.com/)** - Framework CSS utility-first
+- **[Vite](https://vitejs.dev/)** - Build tool ultrarrápido
+- **[Alpine.js](https://alpinejs.dev/)** - Framework JavaScript ligero
+- **Blade Templates** - Motor de plantillas de Laravel
 
-## Contributing
+### Infraestructura
+- **☁️ Cloud Database** - MySQL hospedado en la nube
+- **📦 Composer** - Gestión de dependencias PHP
+- **📦 npm** - Gestión de dependencias JavaScript
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 🚀 Instalación
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Prerrequisitos
 
-## Security Vulnerabilities
+Asegúrate de tener instalado:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- **PHP >= 8.2**
+- **Composer**
+- **Node.js >= 18**
+- **npm** o **yarn**
 
-## License
+### 1️⃣ Clonar el Repositorio
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+git clone https://github.com/tu-usuario/spacedesign-blog.git
+cd spacedesign-blog
+```
+
+### 2️⃣ Instalar Dependencias PHP
+
+```bash
+composer install
+```
+
+### 3️⃣ Instalar Dependencias JavaScript
+```bash
+# Copiar archivo de configuración
+cp .env.example .env
+
+# Generar clave de aplicación
+php artisan key:generate
+```
+
+
+### 4️⃣ Configurar Variables de Entorno
+
+Edita el archivo `.env` con tus credenciales de base de datos en la nube:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=tu-host-de-base-de-datos.com
+DB_PORT=3306
+DB_DATABASE=spacedesign_blog
+DB_USERNAME=tu-usuario
+DB_PASSWORD=tu-contraseña
+```
+
+
+### 5️⃣ Configurar Base de Datos
+```bash
+# Crear tablas en la base de datos
+php artisan migrate
+
+# Poblar con datos de ejemplo (opcional)
+php artisan db:seed
+```
+### 6️⃣ Ejecutar Migraciones
+
+```bash
+# Para desarrollo
+npm run dev
+
+# Para producción
+npm run build
+```
+
+### 7️⃣ Compilar Assets
+
+```bash
+php artisan serve
+```
+
+🎉 **¡Listo!** Tu blog estará disponible en `http://localhost:8000`
+
+---
+
+## 📁 Estructura del Proyecto
+
+```
+spacedesign-blog/
+├── 📂 app/
+│   ├── 📂 Http/Controllers/     # Controladores
+│   ├── 📂 Models/               # Modelos Eloquent
+│   └── 📂 Services/             # Lógica de negocio
+├── 📂 database/
+│   ├── 📂 migrations/           # Migraciones de BD
+│   └── 📂 seeders/              # Datos de prueba
+├── 📂 resources/
+│   ├── 📂 views/                # Plantillas Blade
+│   ├── 📂 css/                  # Estilos TailwindCSS
+│   └── 📂 js/                   # JavaScript
+├── 📂 routes/
+│   └── web.php                  # Rutas web
+├── 📂 public/                   # Assets públicos
+└── 📄 vite.config.js            # Configuración Vite
+```
+
+---
+
+## 🌐 Configuración de Base de Datos en la Nube
+
+Este proyecto utiliza una **base de datos MySQL hospedada en la nube** para garantizar:
+
+- ✅ **Alta disponibilidad** 24/7
+- ✅ **Escalabilidad automática**
+- ✅ **Backups automáticos**
+- ✅ **Seguridad avanzada**
+
+
+## 📚 Comandos Útiles
+
+```bash
+# Limpiar caché
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
+
+# Generar nuevo controlador
+php artisan make:controller PostController
+
+# Crear migración
+php artisan make:migration create_posts_table
+
+# Ejecutar tests
+php artisan test
+
+# Modo de desarrollo con hot reload
+npm run dev
+```
+
+---
+
+## 🤝 Contribuir
+
+¡Las contribuciones son bienvenidas! Por favor:
+
+1. 🍴 Fork el proyecto
+2. 🌱 Crea una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
+3. 💾 Commit tus cambios (`git commit -m 'Agregar nueva funcionalidad'`)
+4. 📤 Push a la rama (`git push origin feature/nueva-funcionalidad`)
+5. 🔄 Abre un Pull Request
+
+
+## 👥 Autores
+
+**Gabriela Contreras**
+- GitHub: (https://github.com/Gabriela-contreras)
+- LinkedIn: https://www.linkedin.com/in/gabriela-contreras-837193278/)
+- Email : gcontreras8522@gmail.com
+
+
+**Katherine Contreras**
+- GitHub: (https://github.com/Gabriela-contreras)
+- LinkedIn: https://www.linkedin.com/in/gabriela-contreras-837193278/)
+- Email : gcontreras8522@gmail.com
+
+
+<div align="center">
+
+**⭐ Si te gusta este proyecto, no olvides darle una estrella ⭐**
+
+*Hecho con ❤️ para la comunidad de diseño y arquitectura*
+
+</div>
