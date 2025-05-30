@@ -40,5 +40,9 @@ Route::get('post/edit', function () {
     return view('pages/post/edit');
 
 });
+Route::get('register/register', function () {
+    return view('pages/register/register');
+
+});
 // Ruta para mostrar posts - ASEGÚRATE de que retorne la vista correcta
 Route::get('post/post', [PostController::class, 'MostrarPosts'])->name('posts.list');

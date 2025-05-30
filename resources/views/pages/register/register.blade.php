@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 
@@ -11,10 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // de prueba luego lo hacemos dinamico
     if ($usuario === 'gaby' && $password === '123123') {
         $_SESSION['usuario'] = $usuario;
-        header('Location: home.php');
-        exit;
+        header('Location: dashboard.php'); // Redirige al dashboard o página principal
+        exit();
     } else {
-        $error = "Usuario o contraseña incorrectos";
+        $error = 'Usuario o contraseña incorrectos';
     }
 }
 ?>
@@ -28,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <section class="h-auto w-[400px]">
         <div class="bg-[#ffe1d2] p-8 rounded-xl shadow-lg max-w-md w-full h-[500px] flex flex-col justify-around">
-            <h1 class="text-2xl font-bold mb-6 text-gray-800 text-center">Iniciar Sesión</h1>
+            <h1 class="text-2xl font-bold mb-6 text-gray-800 text-center">Registrarse</h1>
 
             <?php if($error): ?>
             <div class="bg-red-100 text-red-700 px-4 py-3 rounded mb-4">
@@ -42,7 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="text" id="usuario" name="usuario" placeholder="Ingresa tu usuario" required
                         class=" bg-white w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" />
                 </div>
-
+                <div>
+                    <label for="usuario" class="block text-gray-700 font-medium mb-2">Mail</label>
+                    <input type="text" id="usuario" name="usuario" placeholder="Ingresa tu Mail" required
+                        class=" bg-white w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                </div>
                 <div>
                     <label for="password" class="block text-gray-700 font-medium mb-2">Contraseña</label>
                     <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required
@@ -51,13 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <button type="submit"
                     class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded transition-colors">
-                    Entrar
+                    Registar
                 </button>
             </form>
 
-            <p class="mt-6 text-center text-gray-500 text-sm">
-                ¿No tienes cuenta? <a href="#" class="text-blue-500 hover:underline">Regístrate aquí</a>
-            </p>
         </div>
     </section>
 
