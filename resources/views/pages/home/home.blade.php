@@ -27,7 +27,7 @@
                     <i class="fas fa-book-open mr-2"></i>
                     Explorar Posts
                 </a>
-                <a href="{{ url('/category/create') }}"
+                <a href="{{ url('/post/create') }}"
                     class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-purple-600 transition-all hover-lift">
                     <i class="fas fa-pen mr-2"></i>
                     Escribir Post
@@ -41,29 +41,27 @@
         </div>
     </section>
 
-    <!--sobre nosotros-->
-    {{-- <section>
-    @include('home.cardNosotros')
-    </section> --}}
 
-    <!-- Recent Posts Preview -->
-    <section class="py-20 bg-gray-50" id="posts">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {{-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"> --}}
+        <!-- Features Section -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">¿Por qué elegirnos?</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Descubre las características que hacen de nuestro blog un lugar especial para compartir y
+                        descubrir contenido de calidad.
+                    </p>
+                </div>
 
-            <h1 class="text-xl  opacity-90">Posts</h1>
-            <!-- Sample posts - En producción estos vendrían de la base de datos -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                @include('components.cardPost')
-                @include('components.cardPost')
-                @include('components.cardPost')
+                {{-- @include('home.cardNosotros'); --}}
+
 
 
             </div>
-        </div>
+    </div>
     </section>
-
-
 
     <style>
         @keyframes fade-in {

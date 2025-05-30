@@ -3,8 +3,8 @@
         class="w-16 h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
         <i class="fas fa-lightbulb text-white text-2xl"></i>
     </div>
-    <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ $title }}</h3>
+    <h3 class="text-2xl font-bold text-gray-900 mb-4">Nosotros</h3>
     <p class="text-gray-600">
-        {{ $description }}
+        Descripcion
     </p>
 </div>

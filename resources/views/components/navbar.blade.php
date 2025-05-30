@@ -40,13 +40,18 @@
                         class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                         <i class="fas fa-home mr-1"></i> Inicio
                     </a>
-                    <a href="{{ url('/category') }}"
+                    <a href="{{ url('/post/post') }}"
                         class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
                         <i class="fas fa-list mr-1"></i> Posts
                     </a>
-                    <a href="{{ url('/category/create') }}"
-                        class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-purple-700 hover:to-blue-700 transition-all">
+                    <a href="{{ url('/post/create') }}"
+                        class="bg-gradient-to-r from-purple-600 to-blue-600 px-4 text-gray-700 py-2 rounded-lg text-sm font-medium hover:from-purple-700 hover:to-blue-700 transition-all">
                         <i class="fas fa-plus mr-1"></i> Nuevo Post
+                    </a>
+
+                    <a href="{{ url('/post/create') }}"
+                        class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-purple-700 hover:to-blue-700 transition-all">
+                        <i class="fas fa-plus mr-1"></i> LogOut/Login
                     </a>
                 </div>
 
