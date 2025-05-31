@@ -1,26 +1,8 @@
-
-<?php
-session_start();
-
-
-$error = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $usuario = $_POST['usuario'] ?? '';
-    $password = $_POST['password'] ?? '';
-
-    // de prueba luego lo hacemos dinamico
-    if ($usuario === 'gaby' && $password === '123123') {
-        $_SESSION['usuario'] = $usuario;
-        header('Location: home.php');
-        exit;
-    } else {
-        $error = "Usuario o contraseña incorrectos";
-    }
-}
-?>
 @extends('layouts.app')
+
+@section('content')
 <div class="flex flex-row justify-center align-middle items-center w-full mt-30">
-    <section class="border rounded-4xl  h-auto ">
+    <section class="border rounded-4xl  h-auto">
         <img class="cover bg-cover h-[500px]"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQXKXLiXUNWaEMzZo_2uH4GxSwabNFfmidXA&s"
             alt="">
@@ -30,13 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="bg-[#ffe1d2] p-8 rounded-xl shadow-lg max-w-md w-full h-[500px] flex flex-col justify-around">
             <h1 class="text-2xl font-bold mb-6 text-gray-800 text-center">Iniciar Sesión</h1>
 
-            <?php if($error): ?>
+            @if ($errors->has('error'))
             <div class="bg-red-100 text-red-700 px-4 py-3 rounded mb-4">
-                <?= htmlspecialchars($error) ?>
+                {{ $errors->first('error') }}
             </div>
-            <?php endif; ?>
+            @endif
 
-            <form method="POST" action="" class="space-y-6">
+            <form method="POST" action="{{ route('login') }}" class="space-y-6">
+                @csrf
                 <div>
                     <label for="usuario" class="block text-gray-700 font-medium mb-2">Usuario</label>
                     <input type="text" id="usuario" name="usuario" placeholder="Ingresa tu usuario" required
@@ -56,9 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
 
             <p class="mt-6 text-center text-gray-500 text-sm">
-                ¿No tienes cuenta? <a href="#" class="text-blue-500 hover:underline">Regístrate aquí</a>
+                ¿No tienes cuenta? <a href="{{ route('register') }}" class="text-blue-500 hover:underline">Regístrate aquí</a>
             </p>
         </div>
     </section>
-
 </div>
+@endsection
