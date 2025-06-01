@@ -23,12 +23,13 @@ class PostController extends Controller
 
 
     // Para crear un post
-    public function store(Request $request)
+    public function createPost(Request $request)
     {
         // Validar los datos manualmente usando Validator
         $validator = Validator::make($request->all(), [
             'titulo' => 'required|max:255',
             'contenido' => 'required',
+            'image'=>'required',
             'categoria_id' => 'required|integer',
             'usuario_id' => 'required|integer',
         ]);
@@ -45,7 +46,7 @@ class PostController extends Controller
     }
 
     // Actualiza post
-    public function update(Request $request, $id)
+    public function updatePost(Request $request, $id)
     {
         // Buscar el post o devolver un error 404 si no existe
         $post = Post::findOrFail($id);
@@ -54,6 +55,7 @@ class PostController extends Controller
         $validator = Validator::make($request->all(), [
             'titulo' => 'sometimes|required|max:255',
             'contenido' => 'sometimes|required',
+            'image'=>'required',
             'categoria_id' => 'sometimes|required|integer',
             'usuario_id' => 'sometimes|required|integer',
         ]);

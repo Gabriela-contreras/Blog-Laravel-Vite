@@ -21,6 +21,7 @@ class Post extends Model
     protected $fillable = [
         'titulo',       // Título del post
         'contenido',    // Contenido del post
+        'image',
         'categoria_id', // ID de la categoría
         'usuario_id',   // ID del usuario
     ];
