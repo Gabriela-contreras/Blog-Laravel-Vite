@@ -5,70 +5,60 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
+// Rutas públicas
 Route::get('/', function () {
     return view('pages/welcome');
+})->name('welcome');
+
+// Rutas de autenticación
+Route::middleware('guest')->group(function () {
+    Route::get('login/login', function () {
+        return view('pages/login/login');
+    })->name('login');
+    Route::post('login', [AuthController::class, 'login']);
+
+    Route::get('register/register', function () {
+        return view('pages/register/register');
+    });
+    Route::post('register', [AuthController::class, 'register'])->name('register');
 });
 
+// Ruta de logout (solo para usuarios autenticados)
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-Route::get('pages/home/home', function () {
-    return view('pages/home/home');
-});
-Route::get('pages/home/home', [HomeController::class, 'getHome'])->name('home');
-
-
-Route::get('category', function () {
-    return view('pages/category/category');
-});
-
-Route::get('category/show', function () {
-    return view('pages/category/show');
-});
-
-Route::get('category/create', function () {
-    return view('pages/category/create');
-});
-
-Route::get('category/edit', function () {
-    return view('pages/category/edit');
-});
-
-
-
-//posts
-//edit
-Route::get('post/edit', function () {
-    return view('pages/post/edit');
-});
-Route::post('post/post/edit', [PostController::class, 'updatePost'])->name('post');
-
-//create
-Route::get('post/create', function () {
-    return view('pages/post/create');
-});
+// Rutas protegidas (requieren autenticación)
 Route::middleware(['auth'])->group(function () {
-    Route::post('/create-post', [PostController::class, 'createPost']);
+    // Página principal después del login
+    Route::get('pages/home/home', [HomeController::class, 'getHome'])->name('home');
+
+    // Rutas de categoría (protegidas)
+    Route::get('category', function () {
+        return view('pages/category/category');
+    });
+
+    Route::get('category/show', function () {
+        return view('pages/category/show');
+    });
+
+    Route::get('category/create', function () {
+        return view('pages/category/create');
+    });
+
+    Route::get('category/edit', function () {
+        return view('pages/category/edit');
+    });
+    
+    // Rutas de post (protegidas)
+    Route::get('post/create', function () {
+        return view('pages/post/create');
+    });
+    Route::post('/create-post', [PostController::class, 'createPost'])->name('post')->middleware('check.auth');;
+
+    Route::get('post/edit', function () {
+        return view('pages/post/edit');
+    });
+    Route::post('post/post/edit', [PostController::class, 'updatePost'])->name('post.update')->middleware('check.auth');;
+
+    // Ruta para mostrar posts
+    Route::get('post/post', [PostController::class, 'MostrarPosts'])->name('posts.list');
 });
-Route::post('post/post/create', [PostController::class, 'createPost'])->name('post');
-
-// Ruta para mostrar posts
-Route::get('post/post', [PostController::class, 'MostrarPosts'])->name('posts.list');
-
-
-
-
-//rutas register back y front
-Route::get('register/register', function () {
-    return view('pages/register/register');
-});
-Route::post('register', [AuthController::class, 'register'])->name('register');
-
-
-
-
-//rutas login backend y front
-Route::get('login/login', function () {
-    return view('pages/login/login');
-})->name('login');
-Route::post('login', [AuthController::class, 'login'])->name('login');
-
-// Route::post('logout/logout', [AuthController::class, 'logout']);

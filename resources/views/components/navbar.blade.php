@@ -48,11 +48,14 @@
                         class="bg-gradient-to-r from-purple-600  hover:text-purple-600 to-blue-600 px-4 text-gray-700 py-2 rounded-lg text-sm font-medium hover:from-purple-700 hover:to-blue-700 transition-all">
                         <i class="fas fa-plus mr-1"></i> Nuevo Post
                     </a>
-
-                    <a href="{{ url('/post/create') }}"
-                        class="bg-gradient-to-r from-purple-600  hover:text-purple-600 to-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-purple-700 hover:to-blue-700 transition-all">
-                        Log out
-                    </a>
+                    <form method="POST" action="{{ route('logout') }}" class="inline">
+                        @csrf
+                        <button type="submit" 
+                                class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition-colors"
+                                onclick="return confirm('¿Estás seguro de que quieres cerrar sesión?')">
+                            Cerrar Sesión
+                        </button>
+                    </form>
                 </div>
 
                 <!-- Mobile menu button -->
