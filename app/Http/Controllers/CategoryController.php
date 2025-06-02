@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categoria;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoriaController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Mostrar una lista de categorías.

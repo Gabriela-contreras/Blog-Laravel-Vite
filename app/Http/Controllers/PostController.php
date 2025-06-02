@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+
+use function Laravel\Prompts\alert;
 
 class PostController extends Controller
 {
@@ -20,31 +23,58 @@ class PostController extends Controller
         return view('pages.post.post', compact('posts'));
     }
 
+public function createPost(Request $request)
+{
+    // Validar los datos enviados
+    $validator = Validator::make($request->all(), [
+        'titulo' => 'required|max:255',
+        'contenido' => 'required',
+        'image' => 'required',
+        'category' => 'required|string'
+    ]);
 
-
-    // Para crear un post
-    public function createPost(Request $request)
-    {
-        // Validar los datos manualmente usando Validator
-        $validator = Validator::make($request->all(), [
-            'titulo' => 'required|max:255',
-            'contenido' => 'required',
-            'image'=>'required',
-            'categoria_id' => 'required|integer',
-            'usuario_id' => 'required|integer',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-
-        // Crear un nuevo registro en la tabla 'posts'
-        $post = Post::create($validator->validated());
-
-        // Devolver el post creado en formato JSON con el código 201
-        return response()->json($post, 201);
+    if ($validator->fails()) {
+        return response()->json(['errors' => $validator->errors()], 422);
     }
 
+    // Obtener el usuario autenticado
+    $usuario = $request->user();
+    if (!$usuario) {
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    // Buscar categoría
+    $categoriaNombre = $request->input('category');
+    $categoria = Category::where('nombre', $categoriaNombre)->first();
+
+    if (!$categoria) {
+        $todasCategorias = Category::all(['id', 'nombre']);
+        return response()->json([
+            'error' => 'Categoría no encontrada',
+            'categoria_buscada' => $categoriaNombre,
+            'categorias_disponibles' => $todasCategorias
+        ], 404);
+    }
+
+    // Crear el post
+    try {
+        $post = Post::create([
+            'titulo' => $request->input('titulo'),
+            'contenido' => $request->input('contenido'),
+            'image' => $request->input('image'),
+            'usuario_id' => $usuario->id,
+            'categoria_id' => $categoria->id
+        ]);
+
+        return redirect()->route('posts.list')->with('success', 'Post creado exitosamente');
+
+    } catch (\Exception $e) {
+        return response()->json([
+            'error' => 'Error al crear post',
+            'message' => $e->getMessage()
+        ], 500);
+    }
+}
     // Actualiza post
     public function updatePost(Request $request, $id)
     {
@@ -55,9 +85,7 @@ class PostController extends Controller
         $validator = Validator::make($request->all(), [
             'titulo' => 'sometimes|required|max:255',
             'contenido' => 'sometimes|required',
-            'image'=>'required',
-            'categoria_id' => 'sometimes|required|integer',
-            'usuario_id' => 'sometimes|required|integer',
+            'image' => 'required',
         ]);
 
         // Verificar si la validación falla

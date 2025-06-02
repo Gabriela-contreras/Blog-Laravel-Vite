@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use App\Http\Controllers\CategoriaController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User; // Asegúrate de importar el modelo User
+use App\Models\Categoria; // Asegúrate de importar el modelo Categoria
 
 class Post extends Model
 {
@@ -36,11 +37,10 @@ class Post extends Model
 
     /**
      * Relación con la tabla `categorias`
-     * CORRECCIÓN: Cambiado de Category a Categoria
      */
     public function categoria()
     {
-        return $this->belongsTo(CategoriaController::class, 'categoria_id');
+        return $this->belongsTo(Category::class, 'categoria_id');
     }
 
     /**

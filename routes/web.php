@@ -45,6 +45,9 @@ Route::post('post/post/edit', [PostController::class, 'updatePost'])->name('post
 Route::get('post/create', function () {
     return view('pages/post/create');
 });
+Route::middleware(['auth'])->group(function () {
+    Route::post('/create-post', [PostController::class, 'createPost']);
+});
 Route::post('post/post/create', [PostController::class, 'createPost'])->name('post');
 
 // Ruta para mostrar posts

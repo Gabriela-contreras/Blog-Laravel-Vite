@@ -38,7 +38,7 @@
                 </div>
 
 
-                <!-- Nueva Imagen -->
+                <!-- Nueva Imagen --> 
                 <div>
                     <label for="poster" class="block text-sm font-medium text-stone-700 mb-2">
                         Adjuntar link Imagen
