@@ -13,6 +13,9 @@ Route::get('/', function () {
 // Ruta para ver posts (pública)
 Route::get('/posts', [PostController::class, 'MostrarPosts'])->name('posts.list');
 
+// Ruta para ver detalle de un post (pública - accesible para todos)
+Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
+
 // Rutas de autenticación
 Route::middleware('guest')->group(function () {
     // Rutas de login

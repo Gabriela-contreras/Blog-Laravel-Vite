@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    /**
+     * Mostrar todos los posts (solo usuarios autenticados)
+     */
     public function MostrarPosts()
     {
         // Obtener posts con sus relaciones
@@ -18,6 +21,24 @@ class PostController extends Controller
 
         // Retornar vista posts/post.blade.php
         return view('pages.post.post', compact('posts'));
+    }
+
+    /**
+     * Mostrar detalle de un post específico (solo usuarios autenticados)
+     */
+    public function show($id)
+    {
+        $post = Post::with(['usuario', 'categoria'])->findOrFail($id);
+        
+        // Obtener posts relacionados (misma categoría, excluyendo el actual)
+        $relatedPosts = Post::with(['usuario', 'categoria'])
+            ->where('categoria_id', $post->categoria_id)
+            ->where('id', '!=', $post->id)
+            ->orderBy('created_at', 'desc')
+            ->take(3)
+            ->get();
+
+        return view('pages.post.show', compact('post', 'relatedPosts'));
     }
 
     public function createPost(Request $request)
