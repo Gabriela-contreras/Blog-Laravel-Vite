@@ -9,37 +9,7 @@
         @if($posts && $posts->count() > 0)
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($posts as $post)
-                    <article class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                        <div class="h-48 bg-gradient-to-r from-green-400 to-blue-400">
-                            <img class="w-full h-full object-cover opacity-80"
-                                src="https://hips.hearstapps.com/hmg-prod/images/casa-madrid-estilo-tradicional-moderno-salon-vista-general-c2101-r1883734-1606477694.jpg"
-                                alt="{{ $post->titulo }}">
-                        </div>
-                        <div class="p-6">
-                            <span class="inline-block bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full mb-3">
-                                {{ $post->categoria ? $post->categoria->nombre : 'Lifestyle' }}
-                            </span>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2">{{ $post->titulo }}</h3>
-                            <p class="text-gray-600 mb-4">
-                                {{ Str::limit($post->contenido, 150) }}
-                            </p>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center space-x-2">
-                                    <div class="w-8 h-8 bg-gradient-to-r from-blue-400 to-green-400 rounded-full flex items-center justify-center">
-                                        <span class="text-white text-sm font-semibold">
-                                            {{ $post->usuario ? substr($post->usuario->name, 0, 1) : 'U' }}
-                                        </span>
-                                    </div>
-                                    <span class="text-sm text-gray-500">
-                                        {{ $post->usuario ? $post->usuario->name : 'Usuario' }}
-                                    </span>
-                                </div>
-                                <div class="text-xs text-gray-400">
-                                    {{ $post->created_at ? $post->created_at->format('d/m/Y') : 'Fecha' }}
-                                </div>
-                            </div>
-                        </div>
-                    </article>
+                    @include('components.cardPost', ['post' => $post])
                 @endforeach
             </div>
         @else
@@ -55,9 +25,64 @@
         @endif
     </div>
 
+    <!-- Modal de confirmación para eliminar -->
+    <div id="deleteModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-6 max-w-sm mx-4">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">¿Confirmar eliminación?</h3>
+            <p class="text-sm text-gray-500 mb-6">Esta acción no se puede deshacer. ¿Estás seguro de que quieres eliminar este post?</p>
+            <div class="flex space-x-3">
+                <button onclick="closeDeleteModal()" 
+                        class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 font-medium py-2 px-4 rounded">
+                    Cancelar
+                </button>
+                <button onclick="deletePost()" 
+                        class="flex-1 bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded">
+                    Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulario oculto para eliminar -->
+    <form id="deleteForm" method="POST" style="display: none;">
+        @csrf
+        @method('DELETE')
+    </form>
+
     <style>
         .hover-lift:hover {
             transform: translateY(-4px);
         }
     </style>
+
+    <script>
+        let postToDelete = null;
+
+        function confirmDelete(postId) {
+            postToDelete = postId;
+            document.getElementById('deleteModal').classList.remove('hidden');
+            document.getElementById('deleteModal').classList.add('flex');
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').classList.add('hidden');
+            document.getElementById('deleteModal').classList.remove('flex');
+            postToDelete = null;
+        }
+
+        function deletePost() {
+            if (postToDelete) {
+                const form = document.getElementById('deleteForm');
+                form.action = `/posts/${postToDelete}`;
+                form.submit();
+            }
+        }
+
+        // Cerrar modal al hacer clic fuera de él
+        document.getElementById('deleteModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDeleteModal();
+            }
+        });
+    </script>
 @endsection

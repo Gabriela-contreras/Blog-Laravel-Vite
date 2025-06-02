@@ -10,6 +10,9 @@ Route::get('/', function () {
     return view('pages/welcome');
 })->name('welcome');
 
+// Ruta para ver posts (pública)
+Route::get('/posts', [PostController::class, 'MostrarPosts'])->name('posts.list');
+
 // Rutas de autenticación
 Route::middleware('guest')->group(function () {
     // Rutas de login
@@ -59,4 +62,10 @@ Route::middleware(['auth'])->group(function () {
 
     // Ruta para mostrar posts
     Route::get('post/post', [PostController::class, 'MostrarPosts'])->name('posts.list');
+
+    // Rutas para posts (requieren autenticación)
+    Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
+    Route::put('/posts/{id}', [PostController::class, 'updatePost'])->name('posts.update');
+    Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
+
 });

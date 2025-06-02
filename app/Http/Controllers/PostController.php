@@ -7,13 +7,10 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
-use function Laravel\Prompts\alert;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
-
-
     public function MostrarPosts()
     {
         // Obtener posts con sus relaciones
@@ -23,92 +20,126 @@ class PostController extends Controller
         return view('pages.post.post', compact('posts'));
     }
 
-public function createPost(Request $request)
-{
-    // Validar los datos enviados
-    $validator = Validator::make($request->all(), [
-        'titulo' => 'required|max:255',
-        'contenido' => 'required',
-        'image' => 'required',
-        'category' => 'required|string'
-    ]);
-
-    if ($validator->fails()) {
-        return response()->json(['errors' => $validator->errors()], 422);
-    }
-
-    // Obtener el usuario autenticado
-    $usuario = $request->user();
-    if (!$usuario) {
-        return response()->json(['error' => 'Usuario no autenticado'], 401);
-    }
-
-    // Buscar categoría
-    $categoriaNombre = $request->input('category');
-    $categoria = Category::where('nombre', $categoriaNombre)->first();
-
-    if (!$categoria) {
-        $todasCategorias = Category::all(['id', 'nombre']);
-        return response()->json([
-            'error' => 'Categoría no encontrada',
-            'categoria_buscada' => $categoriaNombre,
-            'categorias_disponibles' => $todasCategorias
-        ], 404);
-    }
-
-    // Crear el post
-    try {
-        $post = Post::create([
-            'titulo' => $request->input('titulo'),
-            'contenido' => $request->input('contenido'),
-            'image' => $request->input('image'),
-            'usuario_id' => $usuario->id,
-            'categoria_id' => $categoria->id
+    public function createPost(Request $request)
+    {
+        // Validar los datos enviados
+        $validator = Validator::make($request->all(), [
+            'titulo' => 'required|max:255',
+            'contenido' => 'required',
+            'image' => 'required|url',
+            'category' => 'required|string'
         ]);
 
-        return redirect()->route('posts.list')->with('success', 'Post creado exitosamente');
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
 
-    } catch (\Exception $e) {
-        return response()->json([
-            'error' => 'Error al crear post',
-            'message' => $e->getMessage()
-        ], 500);
+        // Obtener el usuario autenticado
+        $usuario = $request->user();
+        if (!$usuario) {
+            return back()->withErrors(['error' => 'Usuario no autenticado'])->withInput();
+        }
+
+        // Buscar categoría
+        $categoriaNombre = $request->input('category');
+        $categoria = Category::where('nombre', $categoriaNombre)->first();
+
+        if (!$categoria) {
+            return back()->withErrors(['category' => 'Categoría no encontrada'])->withInput();
+        }
+
+        // Crear el post
+        try {
+            $post = Post::create([
+                'titulo' => $request->input('titulo'),
+                'contenido' => $request->input('contenido'),
+                'image' => $request->input('image'),
+                'usuario_id' => $usuario->id,
+                'categoria_id' => $categoria->id
+            ]);
+
+            return redirect()->route('posts.list')->with('success', 'Post creado exitosamente');
+
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Error al crear post: ' . $e->getMessage()])->withInput();
+        }
     }
-}
-    // Actualiza post
+
+    // Mostrar formulario de edición
+    public function edit($id)
+    {
+        $post = Post::with(['categoria', 'usuario'])->findOrFail($id);
+        
+        // Verificar que el usuario actual es el propietario del post
+        if (Auth::id() !== $post->usuario_id) {
+            return redirect()->route('posts.list')->with('error', 'No tienes permiso para editar este post.');
+        }
+
+        return view('pages.post.editPost', compact('post'));
+    }
+
+    // Actualizar post
     public function updatePost(Request $request, $id)
     {
-        // Buscar el post o devolver un error 404 si no existe
         $post = Post::findOrFail($id);
+        
+        // Verificar que el usuario actual es el propietario del post
+        if (Auth::id() !== $post->usuario_id) {
+            return redirect()->route('posts.list')->with('error', 'No tienes permiso para editar este post.');
+        }
 
         // Validar los datos de entrada
         $validator = Validator::make($request->all(), [
-            'titulo' => 'sometimes|required|max:255',
-            'contenido' => 'sometimes|required',
-            'image' => 'required',
+            'titulo' => 'required|max:255',
+            'contenido' => 'required',
+            'image' => 'required|url',
+            'category' => 'required|string'
         ]);
 
-        // Verificar si la validación falla
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+            return back()->withErrors($validator)->withInput();
         }
 
-        // Actualizar el post con los datos validados
-        $post->update($validator->validated());
+        // Buscar categoría
+        $categoriaNombre = $request->input('category');
+        $categoria = Category::where('nombre', $categoriaNombre)->first();
 
-        // Retornar el post actualizado
-        return response()->json([
-            'message' => 'Post actualizado correctamente',
-            'data' => $post
-        ], 200);
+        if (!$categoria) {
+            return back()->withErrors(['category' => 'Categoría no encontrada'])->withInput();
+        }
+
+        try {
+            // Actualizar el post
+            $post->update([
+                'titulo' => $request->input('titulo'),
+                'contenido' => $request->input('contenido'),
+                'image' => $request->input('image'),
+                'categoria_id' => $categoria->id
+            ]);
+
+            return redirect()->route('posts.list')->with('success', 'Post actualizado correctamente');
+
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Error al actualizar post: ' . $e->getMessage()])->withInput();
+        }
     }
 
     // Eliminar un post
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
-        $post->delete();
-        return response()->json(['message' => 'Post deleted']);
+        
+        // Verificar que el usuario actual es el propietario del post
+        if (Auth::id() !== $post->usuario_id) {
+            return redirect()->route('posts.list')->with('error', 'No tienes permiso para eliminar este post.');
+        }
+
+        try {
+            $post->delete();
+            return redirect()->route('posts.list')->with('success', 'Post eliminado correctamente');
+        } catch (\Exception $e) {
+            return redirect()->route('posts.list')->with('error', 'Error al eliminar el post');
+        }
     }
 
     // Buscar un post específico
