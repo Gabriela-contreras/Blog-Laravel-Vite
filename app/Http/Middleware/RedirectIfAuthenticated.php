@@ -18,6 +18,8 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                // Limpiar cualquier URL intended antes de redirigir
+                $request->session()->forget('url.intended');
                 return redirect()->route('home');
             }
         }

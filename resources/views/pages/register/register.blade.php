@@ -18,9 +18,8 @@
                     </div>
                 @endif
 
-                {{-- IMPORTANTE: Cambiar la action a la ruta correcta --}}
+                {{-- Cambiado: ahora apunta a la ruta correcta --}}
                 <form method="POST" action="{{ route('register') }}" class="space-y-6">
-
                     @csrf
                     <div>
                         <label for="usuario" class="block text-gray-700 font-medium mb-2">Usuario</label>
@@ -46,8 +45,6 @@
                         Registrar
                     </button>
                 </form>
-
-
             </div>
         </section>
     </div>

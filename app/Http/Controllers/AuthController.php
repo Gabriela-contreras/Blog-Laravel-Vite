@@ -14,13 +14,13 @@ class AuthController extends Controller
     // Mostrar formulario de login
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('pages.login.login');
     }
 
     // Mostrar formulario de registro
     public function showRegisterForm()
     {
-        return view('auth.register');
+        return view('pages.register.register');
     }
 
     // Registro de usuario
@@ -41,6 +41,8 @@ class AuthController extends Controller
         // Autenticar automáticamente después del registro
         Auth::login($user);
 
+        // Limpiar cualquier URL intended y redirigir siempre al home
+        $request->session()->forget('url.intended');
         return redirect()->route('home')->with('success', 'Registro exitoso. Bienvenido!');
     }
 
@@ -55,8 +57,11 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
             
-            // Redirigir a la página que intentaba acceder o al home
-            return redirect()->intended(route('home'))->with('success', 'Bienvenido de vuelta!');
+            // Limpiar cualquier URL intended para forzar redirección al home
+            $request->session()->forget('url.intended');
+            
+            // Siempre redirigir al home después del login
+            return redirect()->route('home')->with('success', '¡Bienvenido de vuelta!');
         }
 
         return back()->withErrors([

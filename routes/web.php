@@ -12,15 +12,13 @@ Route::get('/', function () {
 
 // Rutas de autenticación
 Route::middleware('guest')->group(function () {
-    Route::get('login/login', function () {
-        return view('pages/login/login');
-    })->name('login');
-    Route::post('login', [AuthController::class, 'login']);
+    // Rutas de login
+    Route::get('login/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('login/login', [AuthController::class, 'login'])->name('login.post'); // Cambiado aquí
 
-    Route::get('register/register', function () {
-        return view('pages/register/register');
-    });
-    Route::post('register', [AuthController::class, 'register'])->name('register');
+    // Rutas de registro
+    Route::get('register/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
+    Route::post('register/register', [AuthController::class, 'register'])->name('register'); // Cambiado aquí
 });
 
 // Ruta de logout (solo para usuarios autenticados)
@@ -52,12 +50,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('post/create', function () {
         return view('pages/post/create');
     });
-    Route::post('/create-post', [PostController::class, 'createPost'])->name('post')->middleware('check.auth');;
+    Route::post('/create-post', [PostController::class, 'createPost'])->name('post')->middleware('check.auth');
 
     Route::get('post/edit', function () {
         return view('pages/post/edit');
     });
-    Route::post('post/post/edit', [PostController::class, 'updatePost'])->name('post.update')->middleware('check.auth');;
+    Route::post('post/post/edit', [PostController::class, 'updatePost'])->name('post.update')->middleware('check.auth');
 
     // Ruta para mostrar posts
     Route::get('post/post', [PostController::class, 'MostrarPosts'])->name('posts.list');

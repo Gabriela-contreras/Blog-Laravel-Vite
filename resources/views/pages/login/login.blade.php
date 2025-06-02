@@ -18,8 +18,8 @@
                     </div>
                 @endif
 
-                {{-- IMPORTANTE: Cambiar la action a la ruta correcta --}}
-                <form method="POST" action="{{ route('login') }}" class="space-y-6">
+                {{-- Cambiado: usar route('login.post') o la URL directa --}}
+                <form method="POST" action="{{ route('login.post') }}" class="space-y-6">
                     @csrf
                     <div>
                         <label for="usuario" class="block text-gray-700 font-medium mb-2">Usuario</label>
@@ -40,9 +40,8 @@
                     </button>
                 </form>
 
-
                 <p class="mt-6 text-center text-gray-500 text-sm">
-                    ¿No tienes cuenta? <a href="{{ route('register') }}" class="text-blue-500 hover:underline">Regístrate
+                    ¿No tienes cuenta? <a href="{{ route('register.form') }}" class="text-blue-500 hover:underline">Regístrate
                         aquí</a>
                 </p>
             </div>
