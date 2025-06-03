@@ -24,13 +24,13 @@
 <body class="bg-gray-50 min-h-screen">
     <!-- Navbar -->
 
-    <nav class="glass-effect fixed w-full z-50 top-0">
+    <nav class="bg-[#e7ddd3] fixed w-full z-50 top-0">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <a href="{{ url('/') }}" class="flex items-center space-x-2">
                         <div
-                            class="w-8 h-8 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
+                            class="w-8 h-8 rounded-lg flex items-center justify-center">
                             <i class="fas fa-blog text-white text-sm"></i>
                         </div>
 
@@ -39,7 +39,7 @@
 
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="{{ url('/') }}"
-                        class="text-gray-700 hover:text-purple-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">
+                        class="text-gray-700 hover:text-[#918477] px-3 py-2 rounded-md text-sm font-medium transition-colors">
                         <i class="fas fa-home mr-1"></i> Inicio
                     </a>
                     {{-- <a href="{{ url('/post/post') }}"
@@ -47,12 +47,12 @@
                         <i class="fas fa-list mr-1"></i> Posts
                     </a> --}}
                     <a href="{{ url('register/register') }}"
-                        class="bg-gradient-to-r from-purple-600  hover:text-purple-600 to-blue-600 px-4 text-gray-700 py-2 rounded-lg text-sm font-medium hover:from-purple-700 hover:to-blue-700 transition-all">
+                        class="  hover:text-[#918477]   px-4 text-gray-700 py-2 rounded-lg text-sm font-medium hover:from-purple-700 hover:to-blue-700 transition-all">
                         <i class="fas fa-plus mr-1"></i> Registar
                     </a>
 
                     <a href="{{ url('login/login') }}"
-                        class="bg-gradient-to-r from-purple-600  hover:text-purple-600 to-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-purple-700 hover:to-blue-700 transition-all">
+                        class=" hover:text-[#918477]   text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-purple-700 hover:to-blue-700 transition-all">
                         Log In
                     </a>
                 </div>

@@ -9,7 +9,7 @@
         </section>
 
         <section class="h-auto w-[400px]">
-            <div class="bg-[#ffe1d2] p-8 rounded-xl shadow-lg max-w-md w-full h-[500px] flex flex-col justify-around">
+            <div class="bg-[#e7ddd3] p-8 rounded-xl shadow-lg max-w-md w-full h-[500px] flex flex-col justify-around">
                 <h1 class="text-2xl font-bold mb-6 text-gray-800 text-center">Registrar</h1>
 
                 @if ($errors->has('error'))

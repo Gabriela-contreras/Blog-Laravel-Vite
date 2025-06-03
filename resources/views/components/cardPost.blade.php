@@ -27,19 +27,19 @@
                 {{ $post->created_at ? $post->created_at->format('d/m/Y') : 'Fecha' }}
             </div>
         </div>
-        
+
         @auth
             <div class="flex items-center space-x-2 pt-4 border-t border-gray-100">
-                <a href="{{ route('posts.show', $post->id) }}" 
+                <a href="{{ route('posts.show', $post->id) }}"
                    class="flex-1 bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-3 rounded-md transition-colors text-center">
                     Ver Detalle
                 </a>
                 @if(auth()->user()->id == $post->usuario_id)
-                    <a href="{{ route('posts.edit', $post->id) }}" 
+                    <a href="{{ route('posts.edit', $post->id) }}"
                        class="flex-1 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-3 rounded-md transition-colors text-center">
                         Editar
                     </a>
-                    <button onclick="confirmDelete({{ $post->id }})" 
+                    <button onclick="confirmDelete({{ $post->id }})"
                             class="flex-1 bg-red-500 hover:bg-red-600 text-white text-sm font-medium py-2 px-3 rounded-md transition-colors">
                         Eliminar
                     </button>

@@ -25,27 +25,26 @@
     <footer class="bg-[#918477] text-white mt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Transformamos ideas en realidades</h3>
+                    <ul class="space-y-2 text-white">
+                        <li> Nuestro equipo está dedicado a convertir tus sueños y necesidades en ambientes funcionales, hermosos
+                            y llenos de personalidad.</li>
+
+                    </ul>
+                </div>
                 <div>
                     <div class="flex items-center space-x-2 mb-4">
                         <div
                             class="w-8 h-8 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
                             <i class="fas fa-blog text-white text-sm"></i>
                         </div>
-                        <span class="text-xl font-bold">Mi Blog</span>
+                        <span class="text-xl font-bold">Blog</span>
                     </div>
                     <p class="text-white">Un espacio para compartir ideas, experiencias y conocimientos.</p>
                 </div>
 
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Enlaces Rápidos</h3>
-                    <ul class="space-y-2 text-white">
-                        <li><a href="{{ url('/') }}" class="hover:text-white transition-colors">Inicio</a></li>
-                        <li><a href="{{ url('/category') }}" class="hover:text-white transition-colors">Todos los
-                                Posts</a></li>
-                        <li><a href="{{ url('/category/create') }}" class="hover:text-white transition-colors">Escribir
-                                Post</a></li>
-                    </ul>
-                </div>
 
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Síguenos</h3>
@@ -66,7 +65,7 @@
                 </div>
             </div>
 
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-white">
+            <div class="border-t border-[#e7ddd3] mt-8 pt-8 text-center text-white">
                 <p>&copy; 2025 Mi Blog. Todos los derechos reservados.</p>
             </div>
         </div>
