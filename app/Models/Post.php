@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User; // Asegúrate de importar el modelo User
-use App\Models\Categoria; // Asegúrate de importar el modelo Categoria
+use App\Models\User;
+use App\Models\Categoria;
 
 class Post extends Model
 {
@@ -25,6 +25,7 @@ class Post extends Model
         'image',
         'categoria_id', // ID de la categoría
         'usuario_id',   // ID del usuario
+        'status',       // Estado del post (published, draft, etc.)
     ];
 
     /**
@@ -49,5 +50,13 @@ class Post extends Model
     public function usuario()
     {
         return $this->belongsTo(User::class, 'usuario_id');
+    }
+
+    /**
+     * Scope para filtrar publicaciones publicadas.
+     */
+    public function scopePublished($query)
+    {
+        return $query->where('status', 'published');
     }
 }

@@ -27,7 +27,7 @@
     @include('components.navbar') <!-- Aquí incluyes el navbar -->
 
     <!-- Contenido Principal -->
-    <main class="min-h-screen ">
+    <main class="min-h-screen pt-10">
         @yield('content') <!-- Aquí se inyectará el contenido específico de cada página -->
     </main>
 

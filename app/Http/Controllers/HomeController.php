@@ -39,6 +39,16 @@ class HomeController extends Controller
     }
 
     /**
+     * Scope a query to only include published posts.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    // public function scopePublished($query)
+    // {
+    //     return $query->where('status', 'published');
+    // }
+    /**
      * Display search results.
      */
     public function search(Request $request)

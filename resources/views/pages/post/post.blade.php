@@ -31,11 +31,11 @@
             <h3 class="text-lg font-medium text-gray-900 mb-4">¿Confirmar eliminación?</h3>
             <p class="text-sm text-gray-500 mb-6">Esta acción no se puede deshacer. ¿Estás seguro de que quieres eliminar este post?</p>
             <div class="flex space-x-3">
-                <button onclick="closeDeleteModal()" 
+                <button onclick="closeDeleteModal()"
                         class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-700 font-medium py-2 px-4 rounded">
                     Cancelar
                 </button>
-                <button onclick="deletePost()" 
+                <button onclick="deletePost()"
                         class="flex-1 bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded">
                     Eliminar
                 </button>
