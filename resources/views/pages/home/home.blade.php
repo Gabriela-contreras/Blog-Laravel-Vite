@@ -29,8 +29,8 @@
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
                         <a href="#post"
-                            class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all hover-lift">
-                            <i class="fas fa-book-open mr-2"></i>
+                            class="bg-white text-[#918477] px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all hover-lift">
+                            {{-- <i class="fas fa-book-open mr-2"></i> --}}
                             Explorar Posts
                         </a>
                         {{-- <a href="{{ route('login') }}"
@@ -53,8 +53,8 @@
     <section id="posts" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">Últimos Posts</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                <h2 class="text-6xl font-light text-stone-800 mb-8 tracking-tight">Últimos Posts</h2>
+                <p class="text-xl text-stone-600 max-w-3xl mx-auto leading-relaxed font-light">
                     Descubre nuestro contenido más reciente. Inicia sesión para acceder a todos los posts y crear tu propio
                     contenido.
                 </p>
