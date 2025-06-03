@@ -20,6 +20,7 @@
 
 
         <!-- Form -->
+
         <form class="w-full border border-none" method="POST" action="{{ route('post') }}">
             @csrf
             <div class="max-w-4xl mx-auto px-6">
@@ -80,13 +81,13 @@
                 </div>
 
                 <!-- Botones -->
-                <div class="flex flex-row items-center justify-between pt-6 w-full mb-10">
-                    <button class="px-6 py-2  bg-[#918477]  text-white rounded-md "><a href="{{ url('pages/home/home') }}"
+                <div class="flex flex-row items-center justify-between  pt-6 w-full mb-10">
+                    <button class="px-6 py-2 bg-[#918477]  text-white rounded-md "><a href="{{ url('pages/home/home') }}"
                             >
                             Cancelar
                         </a></button>
                     <div class="">
-                        <button type="submit" class="px-6 py-2  bg-[#918477]  text-white rounded-md ">
+                        <button type="submit" class="px-6 py-2 bg-[#918477]  text-white rounded-md ">
                             Subir
                         </button>
                     </div>
@@ -96,5 +97,6 @@
     </div>
     </div>
     </form>
+
     </div>
 @endsection

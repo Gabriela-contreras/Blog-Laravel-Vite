@@ -33,5 +33,5 @@
     background-size: cover; /* Ajusta el tamaño para cubrir todo el contenedor */
     background-position: center; /* Centra la imagen */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
-    height: max-content;
+
 }

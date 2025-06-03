@@ -28,7 +28,7 @@
                         consejos útiles y perspectivas únicas sobre los temas que más te interesan.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="#post"
+                        <a href="#posts"
                             class="bg-white text-[#918477] px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all hover-lift">
                             {{-- <i class="fas fa-book-open mr-2"></i> --}}
                             Explorar Posts
