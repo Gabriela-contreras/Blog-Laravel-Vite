@@ -28,3 +28,10 @@
     transform: translateY(-5px);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
+.bg-imagen {
+    background-image: url("https://img.freepik.com/fotos-premium/interior-sala-estar-fondo-pared-blanca-vacia-diseno-minimalista-representacion-3d_43151-688.jpg");
+    background-size: cover; /* Ajusta el tamaño para cubrir todo el contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    height: max-content;
+}
