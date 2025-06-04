@@ -12,15 +12,28 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
     /**
-     * Mostrar todos los posts (solo usuarios autenticados)
+     * Mostrar todos los posts (solo usuarios autenticados) con filtrado por categoría
      */
-    public function MostrarPosts()
+    public function MostrarPosts(Request $request)
     {
-        // Obtener posts con sus relaciones
-        $posts = Post::with(['usuario', 'categoria'])->orderBy('created_at', 'desc')->get();
+        // Obtener todas las categorías para el filtro
+        $categorias = Category::all();
+        
+        // Construir la query base
+        $query = Post::with(['usuario', 'categoria'])->orderBy('created_at', 'desc');
+        
+        // Aplicar filtro de categoría si se seleccionó una
+        $categoriaSeleccionada = null;
+        if ($request->has('categoria') && $request->categoria != '') {
+            $categoriaSeleccionada = $request->categoria;
+            $query->where('categoria_id', $categoriaSeleccionada);
+        }
+        
+        // Obtener los posts filtrados
+        $posts = $query->get();
 
         // Retornar vista posts/post.blade.php
-        return view('pages.post.post', compact('posts'));
+        return view('pages.post.post', compact('posts', 'categorias', 'categoriaSeleccionada'));
     }
 
     /**
@@ -170,8 +183,7 @@ class PostController extends Controller
         return response()->json($post);
     }
 
-
-        /**
+    /**
      * Obtener posts públicos para visitantes (sin autenticación)
      */
     public function getPublicPosts()
