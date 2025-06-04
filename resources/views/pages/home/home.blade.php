@@ -60,54 +60,55 @@
                 </p>
             </div>
 
-            {{-- @if ($latestPosts && $latestPosts->count() > 0) --}}
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                {{-- @foreach ($latestPosts as $post) --}}
-                {{-- @include('components.cardPostGuest', ['post' => $post]) --}}
-                {{-- @endforeach --}}
-            </div>
+            @if ($latestPosts && $latestPosts->count() > 0)
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                    @foreach ($latestPosts as $post)
+                        @include('components.cardPost', ['post' => $post])
+                    @endforeach
+                </div>
 
-            <!-- Call to Action -->
-            {{-- <div class="text-center">
-                <div class="bg-white rounded-2xl shadw-lg p-8 max-w-2xl mx-auto">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">
-                        ¿Quieres ver más contenido?
-                    </h3>
-                    <p class="text-gray-600 mb-6">
-                        Inicia sesión para acceder a todos nuestros posts, crear tu propio contenido y ser parte de nuestra
-                        comunidad.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="{{ route('login') }}"
-                               class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:from-purple-700 hover:to-blue-700 transition-all">
+                <!-- Call to Action -->
+                <div class="text-center">
+                    <div class="bg-white rounded-2xl shadw-lg p-8 max-w-2xl mx-auto">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                            ¿Quieres ver más contenido?
+                        </h3>
+                        <p class="text-gray-600 mb-6">
+                            Inicia sesión para acceder a todos nuestros posts, crear tu propio contenido y ser parte de
+                            nuestra
+                            comunidad.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="{{ route('login') }}"
+                                class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:from-purple-700 hover:to-blue-700 transition-all">
                                 <i class="fas fa-sign-in-alt mr-2"></i>
                                 Iniciar Sesión
                             </a>
-                        <a href="{{ route('register.form') }}"
-                            class="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-full font-semibold hover:border-gray-400 hover:bg-gray-50 transition-all">
-                            <i class="fas fa-user-plus mr-2"></i>
-                            Registrarse
-                        </a>
+                            <a href="{{ route('register.form') }}"
+                                class="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-full font-semibold hover:border-gray-400 hover:bg-gray-50 transition-all">
+                                <i class="fas fa-user-plus mr-2"></i>
+                                Registrarse
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div> --}}
-            {{-- @else --}}
-            <div class="text-center py-12">
-                <div class="bg-white rounded-lg p-8 shadow-lg">
-                    <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253z" />
-                    </svg>
-                    <h3 class="text-lg font-medium text-gray-900 mb-2">Aún no hay posts disponibles</h3>
-                    <p class="text-gray-500 mb-6">Sé el primero en crear contenido para nuestra comunidad.</p>
-                    {{-- <a href="{{ route('login') }}"
+            @else
+                <div class="text-center py-12">
+                    <div class="bg-white rounded-lg p-8 shadow-lg">
+                        <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253z" />
+                        </svg>
+                        <h3 class="text-lg font-medium text-gray-900 mb-2">Aún no hay posts disponibles</h3>
+                        <p class="text-gray-500 mb-6">Sé el primero en crear contenido para nuestra comunidad.</p>
+                        {{-- <a href="{{ route('login') }}"
                         class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:from-purple-700 hover:to-blue-700 transition-all">
                         Iniciar Sesión
                     </a> --}}
+                    </div>
                 </div>
-            </div>
-            {{-- @endif --}}
+                @endif
         </div>
     </section>
 

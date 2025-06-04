@@ -59,4 +59,6 @@ class Post extends Model
     {
         return $query->where('status', 'published');
     }
+
+
 }

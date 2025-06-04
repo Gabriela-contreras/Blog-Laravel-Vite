@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
     /**
-     * Display the home page.
-     * Ruta: /pages/home/home
+     * Mostrar la página de inicio con los últimos posts
      */
     public function getHome()
     {
@@ -34,8 +34,17 @@ class HomeController extends Controller
         //     ->latest()
         //     ->take(3)
         //     ->get();
+        // Obtener los últimos 3 posts publicados con sus relaciones
+        $latestPosts = Post::with(['usuario', 'categoria'])
+            ->orderBy('created_at', 'desc')
+            ->take(3)
+            ->get();
 
-        return view('pages.home.home');
+        // Retornar vista home con los posts
+        return view('pages.home.home', compact('latestPosts'));
+
+
+        // return view('pages.home.home');
     }
 
     /**

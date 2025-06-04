@@ -29,7 +29,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::with(['usuario', 'categoria'])->findOrFail($id);
-        
+
         // Obtener posts relacionados (misma categoría, excluyendo el actual)
         $relatedPosts = Post::with(['usuario', 'categoria'])
             ->where('categoria_id', $post->categoria_id)
@@ -90,7 +90,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::with(['categoria', 'usuario'])->findOrFail($id);
-        
+
         // Verificar que el usuario actual es el propietario del post
         if (Auth::id() !== $post->usuario_id) {
             return redirect()->route('posts.list')->with('error', 'No tienes permiso para editar este post.');
@@ -103,7 +103,7 @@ class PostController extends Controller
     public function updatePost(Request $request, $id)
     {
         $post = Post::findOrFail($id);
-        
+
         // Verificar que el usuario actual es el propietario del post
         if (Auth::id() !== $post->usuario_id) {
             return redirect()->route('posts.list')->with('error', 'No tienes permiso para editar este post.');
@@ -149,7 +149,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
-        
+
         // Verificar que el usuario actual es el propietario del post
         if (Auth::id() !== $post->usuario_id) {
             return redirect()->route('posts.list')->with('error', 'No tienes permiso para eliminar este post.');
@@ -168,5 +168,19 @@ class PostController extends Controller
     {
         $post = Post::with(['usuario', 'categoria'])->findOrFail($id);
         return response()->json($post);
+    }
+
+
+        /**
+     * Obtener posts públicos para visitantes (sin autenticación)
+     */
+    public function getPublicPosts()
+    {
+        $latestPosts = Post::with(['usuario', 'categoria'])
+            ->orderBy('created_at', 'desc')
+            ->take(3)
+            ->get();
+
+        return view('pages.home.home', compact('latestPosts'));
     }
 }
