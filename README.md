@@ -37,15 +37,12 @@
 ### Frontend  
 - **[TailwindCSS](https://tailwindcss.com/)** - Framework CSS utility-first
 - **[Vite](https://vitejs.dev/)** - Build tool ultrarrápido
-- **[Alpine.js](https://alpinejs.dev/)** - Framework JavaScript ligero
 - **Blade Templates** - Motor de plantillas de Laravel
 
-### Infraestructura
-- **☁️ Cloud Database** - MySQL hospedado en la nube
-- **📦 Composer** - Gestión de dependencias PHP
-- **📦 npm** - Gestión de dependencias JavaScript
+### Base de Datos
+- **[Railway ]**
+Se implementó Railway, una plataforma en la nube que permite gestionar bases de datos de forma remota. En este proyecto se usó PostgreSQL provisto por Railway, lo que facilitó el acceso desde cualquier entorno de desarrollo sin necesidad de instalaciones locales.
 
----
 
 ## 🚀 Instalación
 
@@ -54,6 +51,7 @@
 Asegúrate de tener instalado:
 
 - **PHP >= 8.2**
+- **Laravel** 
 - **Composer**
 - **Node.js >= 18**
 - **npm** o **yarn**
@@ -61,7 +59,7 @@ Asegúrate de tener instalado:
 ### 1️⃣ Clonar el Repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/spacedesign-blog.git
+git clone https://github.com/Gabriela-contreras/Blog-Laravel-Vite
 cd spacedesign-blog
 ```
 
@@ -82,7 +80,7 @@ php artisan key:generate
 
 
 ### 4️⃣ Configurar Variables de Entorno
-
+Para esta parte ya tener elegida base de datos y creada una tabla. 
 Edita el archivo `.env` con tus credenciales de base de datos en la nube:
 
 ```env
@@ -148,7 +146,7 @@ spacedesign-blog/
 
 ## 🌐 Configuración de Base de Datos en la Nube
 
-Este proyecto utiliza una **base de datos MySQL hospedada en la nube** para garantizar:
+Este proyecto utiliza una **base de datos Railway hospedada en la nube** para garantizar:
 
 - ✅ **Alta disponibilidad** 24/7
 - ✅ **Escalabilidad automática**
@@ -194,13 +192,12 @@ npm run dev
 
 **Gabriela Contreras**
 - GitHub: (https://github.com/Gabriela-contreras)
-- LinkedIn: https://www.linkedin.com/in/gabriela-contreras-837193278/)
+- LinkedIn: https://www.linkedin.com/in/gabriela-contreras-837193278/
 - Email : gcontreras8522@gmail.com
 
 
 **Katherine Contreras**
-- GitHub: (https://github.com/Gabriela-contreras)
-- LinkedIn: https://www.linkedin.com/in/gabriela-contreras-837193278/)
+- GitHub: https://github.com/katherine-j-c-s
 - Email : gcontreras8522@gmail.com
 
 
