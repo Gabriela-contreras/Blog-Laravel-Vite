@@ -67,31 +67,7 @@
                     @endforeach
                 </div>
 
-                <!-- Call to Action -->
-                <div class="text-center">
-                    <div class="bg-white rounded-2xl shadw-lg p-8 max-w-2xl mx-auto">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">
-                            ¿Quieres ver más contenido?
-                        </h3>
-                        <p class="text-gray-600 mb-6">
-                            Inicia sesión para acceder a todos nuestros posts, crear tu propio contenido y ser parte de
-                            nuestra
-                            comunidad.
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                            <a href="{{ route('login') }}"
-                                class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:from-purple-700 hover:to-blue-700 transition-all">
-                                <i class="fas fa-sign-in-alt mr-2"></i>
-                                Iniciar Sesión
-                            </a>
-                            <a href="{{ route('register.form') }}"
-                                class="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-full font-semibold hover:border-gray-400 hover:bg-gray-50 transition-all">
-                                <i class="fas fa-user-plus mr-2"></i>
-                                Registrarse
-                            </a>
-                        </div>
-                    </div>
-                </div>
+
             @else
                 <div class="text-center py-12">
                     <div class="bg-white rounded-lg p-8 shadow-lg">
@@ -102,10 +78,7 @@
                         </svg>
                         <h3 class="text-lg font-medium text-gray-900 mb-2">Aún no hay posts disponibles</h3>
                         <p class="text-gray-500 mb-6">Sé el primero en crear contenido para nuestra comunidad.</p>
-                        {{-- <a href="{{ route('login') }}"
-                        class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:from-purple-700 hover:to-blue-700 transition-all">
-                        Iniciar Sesión
-                    </a> --}}
+
                     </div>
                 </div>
                 @endif
